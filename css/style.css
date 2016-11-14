@@ -1,0 +1,124 @@
+#questContainer {
+    text-align: center;
+    background: white;
+    height: 35%;
+    margin: auto;
+
+}
+#ansContainer{
+    height: 55%;
+
+    background: white;
+    margin: auto;
+
+}
+#navButtons{
+    width: 80%;
+    margin: auto;
+    height:10%;
+    background: white;
+
+}
+body{
+    background: grey;
+    font-family: Arial;
+}
+#container{
+    width: 90%;
+    border: solid 1px black;
+    height: 700px;
+    background: white;
+    margin: auto;
+
+}
+.fieldName{
+ display: table-cell;
+}
+.fieldInput{
+    display: table-cell;
+}
+.fieldHolder{
+ display: table;
+    margin: auto;
+}
+.fieldRow{
+    display: table-row;
+}
+
+.entryInfo {
+}
+.inactiveButton {
+    cursor: not-allowed;
+    text-align: center;
+    width: 75px;
+    background: #3498db;
+    background-image: -webkit-linear-gradient(top, #a6a6a6, #727272);
+    background-image: -moz-linear-gradient(top, #a6a6a6, #727272);
+    background-image: -ms-linear-gradient(top, #a6a6a6, #727272);
+    background-image: -o-linear-gradient(top, #a6a6a6, #727272);
+    background-image: linear-gradient(to bottom, #a6a6a6, #727272);
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 20px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+}
+
+
+.button {
+    cursor: pointer;
+    text-align: center;
+    width: 75px;
+    background: #3498db;
+    background-image: -webkit-linear-gradient(top, #6acbdb, #2980b9);
+    background-image: -moz-linear-gradient(top, #6acbdb, #2980b9);
+    background-image: -ms-linear-gradient(top, #6acbdb, #2980b9);
+    background-image: -o-linear-gradient(top, #6acbdb, #2980b9);
+    background-image: linear-gradient(to bottom, #6acbdb, #2980b9);
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 20px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+}
+
+.button:hover {
+    background: #3cb0fd;
+    background-image: -webkit-linear-gradient(top, #6acbdb, #3498db);
+    background-image: -moz-linear-gradient(top, #6acbdb, #3498db);
+    background-image: -ms-linear-gradient(top, #6acbdb, #3498db);
+    background-image: -o-linear-gradient(top, #6acbdb, #3498db);
+    background-image: linear-gradient(to bottom, #6acbdb, #3498db);
+    text-decoration: none;
+}
+
+.button:active {
+    background: #318fcc;
+    background-image: -webkit-linear-gradient(top, #5ea3b2, #3186c3);
+    background-image: -moz-linear-gradient(top, #5ea3b2, #3186c3);
+    background-image: -ms-linear-gradient(top, #5ea3b2, #3186c3);
+    background-image: -o-linear-gradient(top, #5ea3b2, #3186c3);
+    background-image: linear-gradient(to bottom, #5ea3b2, #3186c3);
+    text-decoration: none;
+}
+
+#backButton{
+    float: left;
+    margin-left: 30px;
+}
+
+#nextButton{
+    float:right;
+    margin-right: 30px;
+
+}
+
+#startButton{
+    margin: auto;
+}
