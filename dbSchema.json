@@ -1,0 +1,29 @@
+{
+  "email" : value,
+  "firstName" : value,
+  "LastName": value,
+  "clickTracking" : [],
+  "answers": {
+    "a": {
+      "result": value,
+      "mouseTracking" : []
+    },
+    "b": {
+      "result": value,
+      "mouseTracking" : []
+    },
+    "c": {
+      "result": value,
+      "mouseTracking" : []
+    },
+    "d": {
+      "result": value,
+      "mouseTracking" : []
+    },
+    "e": {
+      "result": value,
+      "mouseTracking" : []
+    }
+  }
+
+}
