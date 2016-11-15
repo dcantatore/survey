@@ -89,5 +89,5 @@ var Survey = mongoose.model('Survey',surveySchema);
 //     }
 // });
 
-
+//export the survey model for POST requests, change this completely later
 module.exports = Survey;
