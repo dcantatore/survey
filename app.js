@@ -11,18 +11,30 @@ app.use(bodyParser.json())
 
 app.use('/', express.static(path.join(__dirname, '/')));
 
-app.get('/api', function (req, res) {
-    res.send('Ecomm API is running');
+app.post('/newUser',function(req,res,next){
+  Survey.find({email: req.body.email}).count().exec(function (err,results){
+      if (err){
+          console.log(err);
+      }
+      //check if email exists
+      if (results > 0){
+          res.send("user exists");
+      }
+      else {
+          Survey.create({
+              firstName: req.body.fname,
+              lastName: req.body.lname,
+              email: req.body.email
+          });
+          res.sendStatus(201);
+      }
+  });
+
+
+
 });
 
-app.post('/newUser',function(req,res,next){
-  Survey.create({
-      firstName: req.body.fname,
-      lastName: req.body.lname,
-      email: req.body.email
-  });
-    res.sendStatus(201);
-});
+app.get
 
 
 app.listen(3000, function () {
