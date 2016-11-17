@@ -23,23 +23,55 @@ var surveySchema = new Schema({
     firstName: String,
     lastName: String,
     clickTracking: Array,
-    answers: {
-        a: {
-            result: String, mouseTracking: Array
+    surveyName: String,
+    ipInfo: Object,
+    surveyResults: [
+        {   questionNumber: Number,
+            question: String,
+            result: String,
+            mouseTracking: Array
         },
-        b: {
-            result: String, mouseTracking: Array
+        {   questionNumber: Number,
+            question: String,
+            result: String,
+            mouseTracking: Array
         },
-        c: {
-            result: String, mouseTracking: Array
+        {   questionNumber: Number,
+            question: String,
+            result: String,
+            mouseTracking: Array
         },
-        d: {
-            result: String, mouseTracking: Array
+        {   questionNumber: Number,
+            question: String,
+            result: String,
+            mouseTracking: Array
         },
-        e: {
-            result: String, mouseTracking: Array
+        {   questionNumber: Number,
+            question: String,
+            result: String,
+            mouseTracking: Array
+        },
+        {   questionNumber: Number,
+            question: String,
+            result: String,
+            mouseTracking: Array
+        },
+        {   questionNumber: Number,
+            question: String,
+            result: String,
+            mouseTracking: Array
+        },
+        {   questionNumber: Number,
+            question: String,
+            result: String,
+            mouseTracking: Array
+        },
+        {   questionNumber: Number,
+            question: String,
+            result: String,
+            mouseTracking: Array
         }
-    }
+    ]
 });
 
 //Creating model from schema

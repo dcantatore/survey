@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function startSubmit(){
+    getIPinfo();
     var emailStore = document.getElementById("email").value;
     //run validater, if it passes, continue, if not break
     if (validateEmail(emailStore) === false) {
@@ -38,7 +39,7 @@ function startSubmit(){
 
 
    //create object to send
-    var data = {fname: fnameStore, lname: lnameStore, email: emailStore};
+    var data = {fname: fnameStore, lname: lnameStore, email: emailStore, ipInfo: userInfo};
 
     var request = new XMLHttpRequest();
     request.open('POST', 'http://localhost:3000/newUser', true);
@@ -50,9 +51,14 @@ function startSubmit(){
         if(request.readyState === 4 && request.responseText === "user exists") {
             alert("Email: " + emailStore + " already exists, please enter a new email")
         }
+        if(request.readyState === 4 && request.responseText !== "user exists") {
+            console.log("user added");
+            getQuestion();
+            getAnswers();
+            activateButtons()
+
+        }
     };
-
-
 }
 
 
@@ -106,7 +112,7 @@ function blurValidate(event){
         var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,10})+$/;
         if(event.target.value.match(mailformat))
         {
-
+            event.target.style.background = "#ffffff"
         }
         else {
             event.target.style.background = "#ffaaaa";

@@ -15,8 +15,8 @@ input:-webkit-autofill:active {
 
 }
 #ansContainer{
+    text-align: center;
     height: 55%;
-
     background: white;
     margin: auto;
 
@@ -119,12 +119,12 @@ body{
 
 #backButton{
     float: left;
-    margin-left: 30px;
+    margin-left: 1px;
 }
 
 #nextButton{
     float:right;
-    margin-right: 30px;
+    margin-right: 1px;
 
 }
 

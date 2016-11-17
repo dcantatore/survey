@@ -24,17 +24,13 @@ app.post('/newUser',function(req,res,next){
           Survey.create({
               firstName: req.body.fname,
               lastName: req.body.lname,
-              email: req.body.email
+              email: req.body.email,
+              ipInfo: req.body.ipInfo
           });
           res.sendStatus(201);
       }
   });
-
-
-
 });
-
-app.get
 
 
 app.listen(3000, function () {
