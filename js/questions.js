@@ -17,4 +17,4 @@ window.survey = {
     ]
 }
 
-window.questionCount = 0;
+

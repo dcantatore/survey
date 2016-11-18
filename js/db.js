@@ -1,24 +1,29 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-mongoose.connect('mongodb://localhost/results');
+//mongoose.connect('mongodb://localhost/results');
 // connect call back removed
 //, function () {
 //console.log('mongodb connected')}
 
-// define the connection
+/*// define the connection
 var db = mongoose.connection;
 // on errors log them
 db.on('error', console.error.bind(console, 'connection error:'));
 //once connected log it
 db.once('open', function() {
     console.log('mongodb connected');
-});
+});*/
+
+
+var resultsConn = mongoose.createConnection('mongodb://localhost/results');
+var surveysConn = mongoose.createConnection('mongodb://localhost/surveys');
+
 
 
 
 //defining schema
-var surveySchema = new Schema({
+var resultsSchema = new Schema({
     email: String,
     firstName: String,
     lastName: String,
@@ -74,43 +79,52 @@ var surveySchema = new Schema({
     ]
 });
 
+
+var surveySchema = new Schema({
+    name: String,
+    count: Number,
+    contents: [
+        {question: String,
+        answers : Array},
+        {question: String,
+            answers : Array},
+        {question: String,
+        answers : Array},
+        {question: String,
+        answers : Array},
+        {question: String,
+        answers : Array},
+        {question: String,
+        answers : Array},
+        {question: String,
+        answers : Array},
+        {question: String,
+        answers : Array}
+    ]
+});
+
+//Creating model from schema combined with proper connection, first model field is the collection
+var Results = resultsConn.model('result', resultsSchema);
+var Surveys = surveysConn.model('survey', surveySchema)
+
+resultsConn.once('open', function() {
+    console.log('mongodb connected to results');
+});
+
+surveysConn.once('open', function() {
+    console.log('mongodb connected to surveys');
+});
+
+//exporting connections for app.js
+
+module.exports = Surveys;
+module.exports = Results;
+
+/*
 //Creating model from schema
-//
+
 var Survey = mongoose.model('Survey',surveySchema);
 
-// .create saves the data to the database
-// Survey.create({
-//         email: "dario2@email.com",
-//         firstName: "Dario",
-//         LastName: "Can",
-//         clickTracking: [1,2,3],
-//         answers: {
-//             a: {
-//                 result: "yes", mouseTracking: [1,2,3]
-//             },
-//             b: {
-//                 result: "yes", mouseTracking: [1,2,3]
-//             },
-//             c: {
-//                 result: "yes", mouseTracking: [1,2,3]
-//             },
-//             d: {
-//                 result: "yes", mouseTracking: [1,2,3]
-//             },
-//             e: {
-//                 result: "yes", mouseTracking: [1,2,3]
-//             }
-//         }
-//     }, function (err, saved) {
-//     if (err) {
-//         return handleError(err);
-//     }else{
-//         //saved is the object that was created
-//         // possibly use the _id to return to browser
-//         console.log(saved._id);
-//     }
-//     // saved!
-// });
 
 // find works on the model of the schema
 // Survey.find({email: "dario2@email.com"}).count().exec(function (err,results){
@@ -122,4 +136,5 @@ var Survey = mongoose.model('Survey',surveySchema);
 // });
 
 //export the survey model for POST requests, change this completely later
-module.exports = Survey;
+*/
+

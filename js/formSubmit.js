@@ -53,9 +53,14 @@ function startSubmit(){
         }
         if(request.readyState === 4 && request.responseText !== "user exists") {
             console.log("user added");
+            localStorage.setItem('questionCount', 0);
+            console.log(localStorage.questionCount + " after set");
+            window.questionCount = 0;
             getQuestion();
             getAnswers();
-            activateButtons()
+            checkActiveButtons();
+            //document.querySelector('#nextButton').className = "button";
+            console.log(localStorage.questionCount + " exit");
 
         }
     };

@@ -1,4 +1,4 @@
-var userInfo
+var userInfo;
 function getIPinfo() {
     var ipRequest = new XMLHttpRequest();
     ipRequest.open('GET', 'http://ipinfo.io/json', false);
