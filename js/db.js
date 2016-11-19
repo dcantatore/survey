@@ -103,9 +103,9 @@ var surveySchema = new Schema({
     ]
 });
 
-//Creating model from schema combined with proper connection, first model field is the collection
+//Creating model from schema combined with proper connection, first model field is the collection - gets pluralized
 var Results = resultsConn.model('result', resultsSchema);
-var Surveys = surveysConn.model('survey', surveySchema)
+var Surveys = surveysConn.model('question', surveySchema)
 
 resultsConn.once('open', function() {
     console.log('mongodb connected to results');
@@ -117,8 +117,8 @@ surveysConn.once('open', function() {
 
 //exporting connections for app.js
 
-module.exports = Surveys;
-module.exports = Results;
+exports.surveys = Surveys;
+exports.results = Results;
 
 /*
 //Creating model from schema
