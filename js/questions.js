@@ -1,4 +1,5 @@
 window.survey = {
+    "count": 7,
     "surveyOne":
     [   {   "question": "What color website do you prefer?",
             "answers" : ["White", "Grey", "Black", "Red", "Blue"]},

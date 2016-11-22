@@ -52,7 +52,8 @@ function startSubmit(){
             alert("Email: " + emailStore + " already exists, please enter a new email")
         }
         if(request.readyState === 4 && request.responseText !== "user exists") {
-            console.log("user added");
+           // console.log(request.responseText);
+            localStorage.setItem('id', request.responseText);
             localStorage.setItem('questionCount', 0);
             console.log(localStorage.questionCount + " after set");
             window.questionCount = 0;

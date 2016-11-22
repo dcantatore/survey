@@ -35,6 +35,7 @@ function checkActiveButtons(){
         document.querySelector('#nextButton').addEventListener("click", enableNextButton);
     }
     if (localStorage.questionCount > 0){
+        // add conditionals to ignore these actions if they already exist
         document.querySelector('#backButton').className = "button";
         document.querySelector('#backButton').addEventListener("click", enableBackButton);
         document.querySelector('#nextButton').className = "button";
@@ -42,12 +43,16 @@ function checkActiveButtons(){
         document.querySelector('#nextButton').innerText = "Next";
     }
     // Get the length of the current survey without manual input
-    if (localStorage.questionCount > 5){
-        console.log("removed")
+    // -1 is to account for survey array 0 start
+    if (localStorage.questionCount >= window.survey.count - 1){
         document.querySelector('#nextButton').innerText = "Finish";
         document.querySelector('#nextButton').removeEventListener("click", enableNextButton);
-        //something to do when survey is over
+        console.log("finished event triggered");
+        // create finishSurveyAction function to wrap up events, include final answer write - addAnswer
+        //document.querySelector('#nextButton').addEventListener("click", finishSurveyAction);
+        //need to remove finish action if user pressed back possibly in conditional above
     }
+
 }
 
 function enableNextButton (){
@@ -63,4 +68,36 @@ function enableBackButton(){
     checkActiveButtons();
     getAnswers();
     getQuestion();
+}
+
+function addAnswer() {
+    var answer = document.querySelector('input[type=radio]:checked').value;
+    var questionNumber = localStorage.questionCount;
+    var id = localStorage.ID;
+    localStorage.setItem(questionNumber, answer);
+
+/*  what server is expexting
+    //need to get id back from server after write
+    var userId = req.body.id;
+    var currentAnswer = req.body.currentAnswer;
+    var currentQuestionNumber = req.body.currentQuestionNumber;
+    var currentQuestionWords = req.body.currentQuestionWords;
+    //need to find format still
+    var mouseTracking = req.body.mouseTracking;
+
+    */
+
+    var data = {id: id, currentAnswer: answer, currentQuestionNumber: questionNumber, currentQuestionWords: getthese, };
+    var sendAnswer = new XMLHttpRequest();
+    sendAnswer.open('POST', 'http://localhost:3000/updateAnswers', true);
+    sendAnswer.setRequestHeader('Content-Type', "application/json;charset=UTF-8");
+//needs to be json... to send as json
+    sendAnswer.send(JSON.stringify(data));
+    sendAnswer.onreadystatechange = function verifyWritten() {
+        // readystate 4 operation is complete, and the user is already in the DB
+        if (sendAnswer.readyState === 4 && sendAnswer.responseText === "written") {
+            console.log(data + " committed");
+
+        }
+    };
 }
