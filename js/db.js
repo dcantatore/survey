@@ -31,47 +31,14 @@ var resultsSchema = new Schema({
     surveyName: String,
     ipInfo: Object,
     surveyResults: [
-        {   questionNumber: Number,
+
+        {    _id: false,
+            questionNumber: String,
             question: String,
             result: String,
             mouseTracking: Array
         },
-        {   questionNumber: Number,
-            question: String,
-            result: String,
-            mouseTracking: Array
-        },
-        {   questionNumber: Number,
-            question: String,
-            result: String,
-            mouseTracking: Array
-        },
-        {   questionNumber: Number,
-            question: String,
-            result: String,
-            mouseTracking: Array
-        },
-        {   questionNumber: Number,
-            question: String,
-            result: String,
-            mouseTracking: Array
-        },
-        {   questionNumber: Number,
-            question: String,
-            result: String,
-            mouseTracking: Array
-        },
-        {   questionNumber: Number,
-            question: String,
-            result: String,
-            mouseTracking: Array
-        },
-        {   questionNumber: Number,
-            question: String,
-            result: String,
-            mouseTracking: Array
-        },
-        {   questionNumber: Number,
+        {   questionNumber: String,
             question: String,
             result: String,
             mouseTracking: Array

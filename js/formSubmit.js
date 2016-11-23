@@ -53,7 +53,8 @@ function startSubmit(){
         }
         if(request.readyState === 4 && request.responseText !== "user exists") {
            // console.log(request.responseText);
-            localStorage.setItem('id', request.responseText);
+            // maybe slice first and last instead of sub
+            localStorage.setItem('id', request.responseText.substring(1, 25));
             localStorage.setItem('questionCount', 0);
             console.log(localStorage.questionCount + " after set");
             window.questionCount = 0;

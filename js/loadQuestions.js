@@ -14,7 +14,8 @@ function getAnswers() {
     //output answers
     for(var i = 0 ; i < answerArr.length; i++){
         var currentAns = window.survey.surveyOne[localStorage.questionCount].answers[i];
-        document.querySelector("#ansContainer").innerHTML += '<br><input type="radio" class="fieldRow" name="'+ currentSurveyName +'" value=' + currentAns + '>' + currentAns + '</input>';
+        console.log(currentAns);
+        document.querySelector("#ansContainer").innerHTML += '<br><input type="radio" class="fieldRow" name="'+ currentSurveyName +'" value="' + currentAns + '">' + currentAns + '</input>';
     }
 }
 /*
@@ -56,6 +57,7 @@ function checkActiveButtons(){
 }
 
 function enableNextButton (){
+    addAnswer();
     localStorage.questionCount++;
     checkActiveButtons();
     getAnswers();
@@ -72,8 +74,9 @@ function enableBackButton(){
 
 function addAnswer() {
     var answer = document.querySelector('input[type=radio]:checked').value;
+    var questionsWords = document.querySelector('#questContainer').innerText.replace(/(\r\n|\n|\r)/gm,"");
     var questionNumber = localStorage.questionCount;
-    var id = localStorage.ID;
+    var id = localStorage.id;
     localStorage.setItem(questionNumber, answer);
 
 /*  what server is expexting
@@ -87,7 +90,7 @@ function addAnswer() {
 
     */
 
-    var data = {id: id, currentAnswer: answer, currentQuestionNumber: questionNumber, currentQuestionWords: getthese, };
+    var data = {id: id, currentAnswer: answer, currentQuestionNumber: questionNumber, currentQuestionWords: questionsWords};
     var sendAnswer = new XMLHttpRequest();
     sendAnswer.open('POST', 'http://localhost:3000/updateAnswers', true);
     sendAnswer.setRequestHeader('Content-Type', "application/json;charset=UTF-8");

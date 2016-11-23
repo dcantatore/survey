@@ -68,18 +68,39 @@ app.post('/updateAnswers',function(req,res,next){
     var currentQuestionWords = req.body.currentQuestionWords;
     var mouseTracking = req.body.mouseTracking;
     //check if this question was already answered, if so we need to update instead of addtoset
-    dbs.results.find({_id: userId, 'surveyResults.question': currentQuestionWords}).count().exec(function (err,findRes) {
+
+    dbs.results.find({_id: userId}).count().exec(function (err,findRes) {
+        //, 'surveyResults.question': currentQuestionWords
         if (err) {
             console.log(err);
         }
-        if (findRes > 0){
-            //update the previous answers
+        if (findRes > 0) {
+            dbs.results.update({_id: userId}, {
+                    $addToSet: {
+                        surveyResults: {
+                            questionNumber: currentQuestionNumber,
+                            question: currentQuestionWords,
+                            result: currentAnswer
+                        }
+                    }
+                },
+                function updateData(err, set) {
+                    if (err) {
+                        console.log(err);
+                    }
+                    else {
+                        res.send("updated");
+                    }
+
+
+                    //update the previous answers
+                })
         }
 
     });
 
     //if not answered already, add to the set
-    dbs.results.update({_id: userId}, {$addToSet:{surveyResults:{questionNumber:currentQuestionNumber,question:currentQuestionWords, result:currentAnswer, mouseTracking:mouseTracking}}})
+   // dbs.results.update({_id: userId}, {$addToSet:{surveyResults:{questionNumber:currentQuestionNumber,question:currentQuestionWords, result:currentAnswer, mouseTracking:mouseTracking}}});
 
  /*   dbs.Results.findById(id, function (err, doc) {
         if (err) {
