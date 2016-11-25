@@ -16,6 +16,8 @@ db.once('open', function() {
 });*/
 
 
+mongoose.set('debug', true);
+
 var resultsConn = mongoose.createConnection('mongodb://localhost/results');
 var surveysConn = mongoose.createConnection('mongodb://localhost/surveys');
 

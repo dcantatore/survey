@@ -23,7 +23,7 @@ function continuePreviousSession (){
     getQuestion();
     getAnswers();
     checkActiveButtons();
-
+    pastAnswerCheck();
     // lookup the email in the DB to verify
 
     //

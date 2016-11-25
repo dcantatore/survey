@@ -74,28 +74,48 @@ app.post('/updateAnswers',function(req,res,next){
         if (err) {
             console.log(err);
         }
+        // id exists
         if (findRes > 0) {
-            dbs.results.update({_id: userId}, {
-                    $addToSet: {
-                        surveyResults: {
-                            questionNumber: currentQuestionNumber,
-                            question: currentQuestionWords,
-                            result: currentAnswer
-                        }
-                    }
-                },
-                function updateData(err, set) {
-                    if (err) {
-                        console.log(err);
-                    }
-                    else {
-                        res.send("updated");
-                    }
+            console.log("id exists");
+            // find the submitted question to see if submitted already
+            dbs.results.find({_id: userId,surveyResults: {$elemMatch: {questionNumber: currentQuestionNumber}}}).count().exec(function(err, answerExist) {
+                console.log("question exists");
+                if (err) {
+                    console.log(err);
+                }
+                if (answerExist > 0) {
+                    // update the current answer instead of adding to set
+                    dbs.results.update({_id: userId, surveyResults: {$elemMatch: {questionNumber: currentQuestionNumber}}},{$set:{"surveyResults.$.result" : currentAnswer}}).exec();
+                    console.log("answer exists");
+                    res.send("updated");
+
+                }
+                else {
+                    console.log("add to set");
+                    dbs.results.update({_id: userId}, {
+                            $addToSet: {
+                                surveyResults: {
+                                    questionNumber: currentQuestionNumber,
+                                    question: currentQuestionWords,
+                                    result: currentAnswer
+                                }
+                            }
+                    },
+                        function updateData(err, set) {
+                            if (err) {
+                                console.log(err);
+                            }
+                            else {
+                                res.send("updated");
+                            }
 
 
-                    //update the previous answers
-                })
+                            //update the previous answers
+                        })
+                }
+            })
         }
+
 
     });
 

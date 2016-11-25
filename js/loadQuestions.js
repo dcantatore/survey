@@ -14,7 +14,7 @@ function getAnswers() {
     //output answers
     for(var i = 0 ; i < answerArr.length; i++){
         var currentAns = window.survey.surveyOne[localStorage.questionCount].answers[i];
-        console.log(currentAns);
+        //console.log(currentAns);
         document.querySelector("#ansContainer").innerHTML += '<br><input type="radio" class="fieldRow" name="'+ currentSurveyName +'" value="' + currentAns + '">' + currentAns + '</input>';
     }
 }
@@ -62,7 +62,7 @@ function enableNextButton (){
     checkActiveButtons();
     getAnswers();
     getQuestion();
-
+    pastAnswerCheck();
 }
 
 function enableBackButton(){
@@ -70,6 +70,7 @@ function enableBackButton(){
     checkActiveButtons();
     getAnswers();
     getQuestion();
+    pastAnswerCheck();
 }
 
 function addAnswer() {
@@ -103,4 +104,10 @@ function addAnswer() {
 
         }
     };
+}
+
+function pastAnswerCheck () {
+    if (localStorage[localStorage.questionCount] != undefined ){
+        document.querySelector('input[value="' + localStorage[localStorage.questionCount] + '"]').checked = true;
+    }
 }
