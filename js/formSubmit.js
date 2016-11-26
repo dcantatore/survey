@@ -36,10 +36,11 @@ function startSubmit(){
     localStorage.setItem('fnameStore',fnameStore);
     window.fnameStore = lnameStore;
     localStorage.setItem('lnameStore',lnameStore);
-
+    var navInfo = {userAgent: window.navigator.userAgent, vendor: window.navigator.vendor, cookieEnabled:  window.navigator.cookieEnabled, doNotTrack: window.navigator.doNotTrack, platform: window.navigator.platform, vendor: window.navigator.vendor};
+    console.log(navInfo);
 
    //create object to send
-    var data = {fname: fnameStore, lname: lnameStore, email: emailStore, ipInfo: userInfo};
+    var data = {fname: fnameStore, lname: lnameStore, email: emailStore, ipInfo: userInfo, userAgentInfo: navInfo};
 
     var request = new XMLHttpRequest();
     request.open('POST', 'http://localhost:3000/newUser', true);

@@ -50,7 +50,8 @@ app.post('/newUser',function(req,res,next){
               firstName: req.body.fname,
               lastName: req.body.lname,
               email: req.body.email,
-              ipInfo: req.body.ipInfo
+              ipInfo: req.body.ipInfo,
+              userAgentInfo: req.body.userAgentInfo
           }, function(err,mongoRes){
               res.send(mongoRes._id);
               //console.log(mongoRes._id);
@@ -85,6 +86,8 @@ app.post('/updateAnswers',function(req,res,next){
                 }
                 if (answerExist > 0) {
                     // update the current answer instead of adding to set
+                    dbs.results.update({_id: userId, surveyResults: {$elemMatch: {questionNumber: currentQuestionNumber}}},{$inc: { "surveyResults.$.timesSubmitted": 1 }}).exec();
+
                     dbs.results.update({_id: userId, surveyResults: {$elemMatch: {questionNumber: currentQuestionNumber}}},{$set:{"surveyResults.$.result" : currentAnswer}}).exec();
                     console.log("answer exists");
                     res.send("updated");

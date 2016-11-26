@@ -32,18 +32,22 @@ var resultsSchema = new Schema({
     clickTracking: Array,
     surveyName: String,
     ipInfo: Object,
+    userAgentInfo: Object,
     surveyResults: [
 
         {    _id: false,
             questionNumber: String,
             question: String,
             result: String,
-            mouseTracking: Array
+            mouseTracking: Array,
+            timesSubmitted: {type: Number, default: 1}
         },
-        {   questionNumber: String,
+        {   _id: false,
+            questionNumber: String,
             question: String,
             result: String,
-            mouseTracking: Array
+            mouseTracking: Array,
+            timesSubmitted: Number
         }
     ]
 });
