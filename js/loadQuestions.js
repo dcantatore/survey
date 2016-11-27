@@ -58,11 +58,14 @@ function checkActiveButtons(){
 
 function enableNextButton (){
     addAnswer();
+    clearInterval(inter);
     localStorage.questionCount++;
     checkActiveButtons();
     getAnswers();
     getQuestion();
     pastAnswerCheck();
+    heatTrack();
+
 }
 
 function enableBackButton(){
@@ -91,7 +94,7 @@ function addAnswer() {
 
     */
 
-    var data = {id: id, currentAnswer: answer, currentQuestionNumber: questionNumber, currentQuestionWords: questionsWords};
+    var data = {id: id, currentAnswer: answer, currentQuestionNumber: questionNumber, currentQuestionWords: questionsWords, mouseTracking: dataPoints};
     var sendAnswer = new XMLHttpRequest();
     sendAnswer.open('POST', 'http://localhost:3000/updateAnswers', true);
     sendAnswer.setRequestHeader('Content-Type', "application/json;charset=UTF-8");
@@ -110,4 +113,29 @@ function pastAnswerCheck () {
     if (localStorage[localStorage.questionCount] != undefined ){
         document.querySelector('input[value="' + localStorage[localStorage.questionCount] + '"]').checked = true;
     }
+}
+var inter;
+var dataPoints = [];
+function heatTrack(){
+  //  clearInterval(inter);
+   // dataPoints.length = 0;
+    var cursorX;
+    var cursorY;
+    document.onmousemove = function(e){
+        cursorX = e.pageX;
+        cursorY = e.pageY;
+    }
+    inter = setInterval(checkCursor, 250);
+    function checkCursor(){
+        // check to see cursor tracking started onmousemove
+        if (cursorX || cursorY != undefined) {
+            dataPoints.push({x: cursorX, y: cursorY, value: 1});
+            console.log({x: cursorX, y: cursorY, value: 1});
+            // if they have been on a question over 2.5 minutes, that's enough tracking...
+            if (dataPoints.length > 600) {
+                clearInterval(inter);
+            }
+        }
+    }
+
 }

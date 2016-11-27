@@ -62,8 +62,9 @@ function startSubmit(){
             getQuestion();
             getAnswers();
             checkActiveButtons();
+            heatTrack();
             //document.querySelector('#nextButton').className = "button";
-            console.log(localStorage.questionCount + " exit");
+            //console.log(localStorage.questionCount + " exit");
 
         }
     };

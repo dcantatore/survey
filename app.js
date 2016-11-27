@@ -100,7 +100,8 @@ app.post('/updateAnswers',function(req,res,next){
                                 surveyResults: {
                                     questionNumber: currentQuestionNumber,
                                     question: currentQuestionWords,
-                                    result: currentAnswer
+                                    result: currentAnswer,
+                                    mouseTracking: mouseTracking
                                 }
                             }
                     },
