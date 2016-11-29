@@ -66,6 +66,7 @@ function enableNextButton (){
     pastAnswerCheck();
     heatTrack();
     setProgress();
+    divTransition();
 
 }
 
@@ -78,6 +79,7 @@ function enableBackButton(){
     pastAnswerCheck();
     heatTrack();
     setProgress();
+    divTransition();
 }
 
 function addAnswer() {
@@ -143,10 +145,22 @@ function heatTrack(){
     }
 
 }
-
+//maybe kill this
 function setProgress(){
     // subtract one to offset for it showing complete on last Q instead of 1 left
     var progressAmount = localStorage.questionCount/  (window.survey.count - 1 ) * 100 + "%";
     console.log(progressAmount);
     document.querySelector('#progressBarFill').style.width = progressAmount;
+}
+
+function divTransition(){
+    document.querySelector("#container").style.transition = "transform .05s";
+    document.querySelector("#container").style.transform = "scale(0.99,0.99)";
+    setTimeout(function(){
+        document.querySelector("#container").style.transition = "transform .1s";
+        document.querySelector("#container").style.transform = "scale(1,1)";
+
+    },50);
+    //document.querySelector("#container").style.transform = "rotate(0deg)";
+
 }

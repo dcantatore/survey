@@ -1,3 +1,8 @@
+body{
+    background: grey;
+    font-family: Arial;
+}
+
 /* removes autofill yellow */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
@@ -7,20 +12,19 @@ input:-webkit-autofill:active {
     -webkit-transition-delay: 9999s;
 }
 
+#container{
+    width: 90%;
+    border: solid 1px black;
+    height: 650px;
+    background: white;
+    margin: auto;
+}
+
 #questContainer {
     text-align: center;
     background: white;
     height: 35%;
     margin: auto;
-
-}
-.fieldValidator{
-    display: table-cell;
-    width: 75px;
-}
-
-.divCenter{
-    margin:auto;
 }
 
 #ansContainer{
@@ -36,6 +40,15 @@ input:-webkit-autofill:active {
 }
 
 
+.fieldValidator{
+    display: table-cell;
+    width: 75px;
+}
+
+.divCenter{
+    margin:auto;
+}
+
 #progressBar{
     height: 60%;
     width: 70%;
@@ -44,38 +57,23 @@ input:-webkit-autofill:active {
     border: solid 2px black;
     border-radius: 5px;
     box-shadow: inset 0px 0px 7px 0px #b3f5ff;
-
 }
-
 
 #progressBarFill{
     height: 100%;
     width: 0% ;
     background: #0fa5ff;
-
-
 }
-
 
 #navButtons{
     width: 80%;
     margin: auto;
     height:10%;
     background: white;
+}
 
-}
-body{
-    background: grey;
-    font-family: Arial;
-}
-#container{
-    width: 90%;
-    border: solid 1px black;
-    height: 650px;
-    background: white;
-    margin: auto;
 
-}
+
 .fieldName{
  display: table-cell;
 }
@@ -92,7 +90,12 @@ body{
 
 .entryInfo {
 }
+
 .inactiveButton {
+    -webkit-user-select: none;  /* No select on all browsers */
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     cursor: not-allowed;
     text-align: center;
     width: 75px;
@@ -114,6 +117,10 @@ body{
 
 
 .button {
+    -webkit-user-select: none;  /* No select on all browsers */
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     cursor: pointer;
     text-align: center;
     width: 75px;
