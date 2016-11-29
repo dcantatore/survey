@@ -24,6 +24,7 @@ function continuePreviousSession (){
     getAnswers();
     checkActiveButtons();
     pastAnswerCheck();
+    setProgress();
     // lookup the email in the DB to verify
 
     //

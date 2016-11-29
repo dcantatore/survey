@@ -77,7 +77,7 @@ app.post('/updateAnswers',function(req,res,next){
         }
         // id exists
         if (findRes > 0) {
-            console.log("id exists");
+            //console.log("id exists");
             // find the submitted question to see if submitted already
             dbs.results.find({_id: userId,surveyResults: {$elemMatch: {questionNumber: currentQuestionNumber}}}).count().exec(function(err, answerExist) {
                 console.log("question exists");

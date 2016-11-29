@@ -29,7 +29,7 @@ function activateButtons(){
 function checkActiveButtons(){
     console.log(localStorage.questionCount + " checkactive start");
     if (localStorage.questionCount == 0){
-        console.log(localStorage.questionCount + " local is 0 check active");
+       // console.log(localStorage.questionCount + " local is 0 check active");
         document.querySelector('#backButton').className = "inactiveButton";
         document.querySelector('#backButton').removeEventListener("click", enableBackButton);
         document.querySelector('#nextButton').className = "button";
@@ -48,7 +48,7 @@ function checkActiveButtons(){
     if (localStorage.questionCount >= window.survey.count - 1){
         document.querySelector('#nextButton').innerText = "Finish";
         document.querySelector('#nextButton').removeEventListener("click", enableNextButton);
-        console.log("finished event triggered");
+        //console.log("finished event triggered");
         // create finishSurveyAction function to wrap up events, include final answer write - addAnswer
         //document.querySelector('#nextButton').addEventListener("click", finishSurveyAction);
         //need to remove finish action if user pressed back possibly in conditional above
@@ -65,15 +65,19 @@ function enableNextButton (){
     getQuestion();
     pastAnswerCheck();
     heatTrack();
+    setProgress();
 
 }
 
 function enableBackButton(){
     localStorage.questionCount--;
+    clearInterval(inter);
     checkActiveButtons();
     getAnswers();
     getQuestion();
     pastAnswerCheck();
+    heatTrack();
+    setProgress();
 }
 
 function addAnswer() {
@@ -118,7 +122,7 @@ var inter;
 var dataPoints = [];
 function heatTrack(){
   //  clearInterval(inter);
-   // dataPoints.length = 0;
+    dataPoints.length = 0;
     var cursorX;
     var cursorY;
     document.onmousemove = function(e){
@@ -130,7 +134,7 @@ function heatTrack(){
         // check to see cursor tracking started onmousemove
         if (cursorX || cursorY != undefined) {
             dataPoints.push({x: cursorX, y: cursorY, value: 1});
-            console.log({x: cursorX, y: cursorY, value: 1});
+           // console.log({x: cursorX, y: cursorY, value: 1});
             // if they have been on a question over 2.5 minutes, that's enough tracking...
             if (dataPoints.length > 600) {
                 clearInterval(inter);
@@ -138,4 +142,11 @@ function heatTrack(){
         }
     }
 
+}
+
+function setProgress(){
+    // subtract one to offset for it showing complete on last Q instead of 1 left
+    var progressAmount = localStorage.questionCount/  (window.survey.count - 1 ) * 100 + "%";
+    console.log(progressAmount);
+    document.querySelector('#progressBarFill').style.width = progressAmount;
 }

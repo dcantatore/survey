@@ -63,6 +63,7 @@ function startSubmit(){
             getAnswers();
             checkActiveButtons();
             heatTrack();
+            setProgress();
             //document.querySelector('#nextButton').className = "button";
             //console.log(localStorage.questionCount + " exit");
 

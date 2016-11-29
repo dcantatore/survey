@@ -25,11 +25,38 @@ input:-webkit-autofill:active {
 
 #ansContainer{
     text-align: center;
-    height: 55%;
+    height: 48%;
     background: white;
     margin: auto;
+}
+
+#progressContainer{
+    height: 7%;
+    margin: auto;
+}
+
+
+#progressBar{
+    height: 60%;
+    width: 70%;
+    background: #E3E3E3;
+    margin: auto;
+    border: solid 2px black;
+    border-radius: 5px;
+    box-shadow: inset 0px 0px 7px 0px #b3f5ff;
 
 }
+
+
+#progressBarFill{
+    height: 100%;
+    width: 0% ;
+    background: #0fa5ff;
+
+
+}
+
+
 #navButtons{
     width: 80%;
     margin: auto;
@@ -44,7 +71,7 @@ body{
 #container{
     width: 90%;
     border: solid 1px black;
-    height: 700px;
+    height: 650px;
     background: white;
     margin: auto;
 
