@@ -111,9 +111,15 @@ function blurValidate(event){
         var nameFormat = /^[A-Za-z\s\.]+$/;
         if (nameFormat.test(event.target.value)) {
             event.target.style.background = "#ffffff"
+            event.target.parentNode.parentNode.querySelectorAll(".fieldValidator")[1].innerText = " ";
         }
         else{
             event.target.style.background = "#ffaaaa";
+            // get the fields name and say to make it correct
+            var fieldName = event.target.parentNode.parentNode.querySelector(".fieldName").innerText.replace(":","");
+            event.target.parentNode.parentNode.querySelectorAll(".fieldValidator")[1].style.fontSize = "55%";
+            event.target.parentNode.parentNode.querySelectorAll(".fieldValidator")[1].style.color = "#FF0B0C";
+            event.target.parentNode.parentNode.querySelectorAll(".fieldValidator")[1].innerText = "Enter A Valid " + fieldName;
         //alert("Please enter a valid " + event.target.placeholder + " name");
 
         }
@@ -126,8 +132,11 @@ function blurValidate(event){
         }
         else {
             event.target.style.background = "#ffaaaa";
-            // alert("Please enter a valid email address");
-            // return false;
+            document.querySelector(".fieldValidator");
+            var fieldName = event.target.parentNode.parentNode.querySelector(".fieldName").innerText.replace(":","");
+            event.target.parentNode.parentNode.querySelectorAll(".fieldValidator")[1].style.fontSize = "55%";
+            event.target.parentNode.parentNode.querySelectorAll(".fieldValidator")[1].style.color = "#FF0B0C";
+            event.target.parentNode.parentNode.querySelectorAll(".fieldValidator")[1].innerText = "Enter A Valid " + fieldName;
         }
     }
 };

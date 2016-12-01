@@ -42,7 +42,7 @@ input:-webkit-autofill:active {
 
 .fieldValidator{
     display: table-cell;
-    width: 75px;
+    width: 100px;
 }
 
 .divCenter{
